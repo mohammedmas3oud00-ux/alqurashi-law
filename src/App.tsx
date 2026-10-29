@@ -12,7 +12,6 @@ import { ServicesSection } from './components/ServicesSection';
 import { GoogleReviews } from './components/GoogleReviews';
 import { WhatsAppFunnel } from './components/WhatsAppFunnel';
 import { LocationContact } from './components/LocationContact';
-import { CloudflareRecommendations } from './components/CloudflareRecommendations';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
 
@@ -108,10 +107,6 @@ export default function App() {
         />
 
         <LocationContact
-          lang={lang}
-        />
-
-        <CloudflareRecommendations
           lang={lang}
         />
       </main>

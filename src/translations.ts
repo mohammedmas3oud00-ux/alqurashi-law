@@ -374,15 +374,6 @@ export const DICTIONARY = {
       interactiveMapLabel: 'خريطة تفاعلية للموقع:',
       directionsHint: 'اضغط على الخريطة أو زر الاتجاهات للوصول المباشر عبر نظام الملاحة.'
     },
-    cloudflare: {
-      badge: 'إرشادات النطاق واستضافة الويب',
-      title: 'اقتراحات أسماء النطاق لـ Cloudflare Pages',
-      desc: 'لإطلاق الموقع الإلكتروني بشكل احترافي، يُنصح باختيار أحد النطاقين المختصرين المعتمدين:',
-      opt1Title: 'alqurashi-law.pages.dev',
-      opt1Desc: 'مباشر وواضح باسم العائلة للمحامي، ويسهل تذكره وتسجيله.',
-      opt2Title: 'mutimm-law.pages.dev',
-      opt2Desc: 'ممتاز جداً لتعزيز العلامة التجارية المؤسسية لـ "شركة مُتم للمحاماة".',
-    },
     footer: {
       rights: 'جميع الحقوق محفوظة © 2026 مكتب المحامي والموثق مساعد سعود القرشي | شركة مُتم للمحاماة والاستشارات القانونية.',
       disclaimer: 'المعلومات المقدمة في هذا الموقع لأغراض التعريف بالخدمات والتواصل المهني المصرح به نظاماً من وزارة العدل في المملكة العربية السعودية.',
@@ -503,15 +494,6 @@ export const DICTIONARY = {
       qrTitle: 'Scan QR code for direct WhatsApp chat:',
       interactiveMapLabel: 'Interactive Location Map:',
       directionsHint: 'Click on the map or the navigation button for turn-by-turn driving directions.'
-    },
-    cloudflare: {
-      badge: 'Cloudflare Pages Deployment',
-      title: 'Recommended Domain Names',
-      desc: 'For optimal brand recognition on Cloudflare Pages, the following concise domains are recommended:',
-      opt1Title: 'alqurashi-law.pages.dev',
-      opt1Desc: 'Direct, memorable, and carries the distinguished family name of the attorney.',
-      opt2Title: 'mutimm-law.pages.dev',
-      opt2Desc: 'Excellent for establishing the corporate identity of Mutimm Law Firm.',
     },
     footer: {
       rights: 'All rights reserved © 2026 Office of Attorney & Notary Mosaed Saud Al-Qurashi | Mutimm Law Firm.',

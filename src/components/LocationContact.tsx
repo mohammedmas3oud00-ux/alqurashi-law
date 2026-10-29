@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { MapPin, Phone, Copy, Check, Download, Navigation, QrCode, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import QRCode from 'qrcode';
+import { MapPin, Phone, Copy, Check, Download, Navigation, QrCode, ExternalLink, MessageSquare, Maximize2, X } from 'lucide-react';
 import { Language } from '../types';
 import { DICTIONARY, OFFICIAL_DATA } from '../translations';
 import { downloadLawyerVCard } from '../utils/vcard';
@@ -12,8 +13,31 @@ export const LocationContact: React.FC<LocationContactProps> = ({ lang }) => {
   const [copiedAddress, setCopiedAddress] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [vCardDownloaded, setVCardDownloaded] = useState(false);
+  const [qrDataUrl, setQrDataUrl] = useState<string>('');
+  const [showQrModal, setShowQrModal] = useState(false);
   const t = DICTIONARY[lang];
   const isAr = lang === 'ar';
+
+  const whatsAppDirectUrl = `https://wa.me/${OFFICIAL_DATA.phoneRaw}`;
+
+  // Generate authentic, scannable QR code for the WhatsApp direct link
+  useEffect(() => {
+    QRCode.toDataURL(whatsAppDirectUrl, {
+      width: 280,
+      margin: 1,
+      color: {
+        dark: '#141414',
+        light: '#FFFFFF',
+      },
+      errorCorrectionLevel: 'M',
+    })
+      .then((url: string) => {
+        setQrDataUrl(url);
+      })
+      .catch((err: unknown) => {
+        console.error('Error generating QR code:', err);
+      });
+  }, [whatsAppDirectUrl]);
 
   const handleCopyAddress = () => {
     const text = isAr ? OFFICIAL_DATA.addressAr : OFFICIAL_DATA.addressEn;
@@ -142,11 +166,12 @@ export const LocationContact: React.FC<LocationContactProps> = ({ lang }) => {
                   </button>
 
                   <a
-                    href={`https://wa.me/${OFFICIAL_DATA.phoneRaw}`}
+                    href={whatsAppDirectUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#25D366]/10 text-[#1F9D4D] dark:text-[#4ADE80] hover:bg-[#25D366]/20 transition-colors"
                   >
+                    <MessageSquare className="w-3.5 h-3.5" />
                     <span>WhatsApp</span>
                   </a>
                 </div>
@@ -154,7 +179,7 @@ export const LocationContact: React.FC<LocationContactProps> = ({ lang }) => {
 
             </div>
 
-            {/* vCard & QR Bar */}
+            {/* vCard & Authentic Scannable QR Code */}
             <div className="pt-4 border-t border-[#ECE9E2] dark:border-[#242427] space-y-3">
               <button
                 onClick={handleDownloadVCard}
@@ -173,19 +198,43 @@ export const LocationContact: React.FC<LocationContactProps> = ({ lang }) => {
                 )}
               </button>
 
-              {/* QR Code Presentation */}
-              <div className="flex items-center justify-between p-3 rounded-xl bg-[#FAF9F5] dark:bg-[#1E1E22] border border-[#E8E5DC] dark:border-[#2A2A2E]">
-                <div className="flex items-center gap-2.5">
-                  <QrCode className="w-5 h-5 text-[#8B6E27] dark:text-[#D8AF3B]" />
-                  <span className="text-xs text-[#525258] dark:text-[#A1A09A]">
-                    {t.location.qrTitle}
-                  </span>
+              {/* Scannable WhatsApp QR Code Box */}
+              <div className="p-3.5 rounded-xl bg-[#FAF9F5] dark:bg-[#1E1E22] border border-[#E8E5DC] dark:border-[#2A2A2E] flex items-center justify-between gap-3">
+                <div className="flex flex-col space-y-1">
+                  <div className="flex items-center gap-1.5 text-xs font-bold text-[#141414] dark:text-[#F3F2EE]">
+                    <QrCode className="w-4 h-4 text-[#8B6E27] dark:text-[#D8AF3B]" />
+                    <span>{isAr ? 'رمز الواتساب المعتمد (قابل للمسح)' : 'Official WhatsApp QR Code'}</span>
+                  </div>
+                  <p className="text-[11px] text-[#606066] dark:text-[#9A9992] leading-tight">
+                    {isAr ? 'وجّه كاميرا هاتفك للمحادثة المباشرة أو اضغط للتكبير' : 'Point camera to chat directly or tap to enlarge'}
+                  </p>
+                  <div className="pt-1">
+                    <button
+                      type="button"
+                      onClick={() => setShowQrModal(true)}
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#8B6E27] dark:text-[#D8AF3B] hover:underline"
+                    >
+                      <Maximize2 className="w-3 h-3" />
+                      <span>{isAr ? 'تكبير الرمز' : 'Enlarge QR'}</span>
+                    </button>
+                  </div>
                 </div>
-                {/* Clean SVG QR pattern */}
-                <div className="w-10 h-10 p-1 bg-white rounded border border-[#DDD9D0] flex items-center justify-center shrink-0">
-                  <svg viewBox="0 0 24 24" className="w-full h-full fill-[#141414]">
-                    <path d="M2 2h8v8H2V2zm2 2v4h4V4H4zm-2 10h8v8H2v-8zm2 2v4h4v-4H4zm10-14h8v8h-8V2zm2 2v4h4V4h-4zm-1 9h2v2h-2v-2zm3 0h2v2h-2v-2zm-3 3h2v2h-2v-2zm3 0h2v2h-2v-2zm3-3h2v5h-2v-5zM13 19h2v3h-2v-3zm3 0h2v3h-2v-3z" />
-                  </svg>
+
+                {/* Real Rendered QR Code */}
+                <div
+                  onClick={() => setShowQrModal(true)}
+                  className="cursor-pointer group relative p-1.5 bg-white rounded-lg border border-[#DDD9D0] dark:border-white/20 shadow-sm shrink-0"
+                  title={isAr ? 'اضغط للتكبير' : 'Click to enlarge'}
+                >
+                  {qrDataUrl ? (
+                    <img
+                      src={qrDataUrl}
+                      alt="WhatsApp QR Code"
+                      className="w-16 h-16 object-contain rounded"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 bg-slate-100 animate-pulse rounded" />
+                  )}
                 </div>
               </div>
 
@@ -218,6 +267,58 @@ export const LocationContact: React.FC<LocationContactProps> = ({ lang }) => {
         </div>
 
       </div>
+
+      {/* QR Code Enlarged Modal */}
+      {showQrModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+          <div className="relative w-full max-w-sm p-6 rounded-2xl bg-white dark:bg-[#18181B] border border-[#DDD9D0] dark:border-[#2A2A2E] shadow-2xl text-center space-y-4">
+            
+            <button
+              onClick={() => setShowQrModal(false)}
+              className="absolute top-4 left-4 p-1.5 rounded-lg text-[#66666A] dark:text-[#A0A09A] hover:bg-[#F0EEE6] dark:hover:bg-[#252528] transition-colors"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            <div className="pt-2">
+              <h3 className="text-base font-bold text-[#141414] dark:text-[#F3F2EE]">
+                {isAr ? 'امسح الرمز للتواصل المباشر' : 'Scan to Connect via WhatsApp'}
+              </h3>
+              <p className="text-xs text-[#606066] dark:text-[#9A9992] mt-0.5">
+                {isAr ? 'مكتب المحامي والموثق مساعد سعود القرشي' : 'Adv. & Notary Mosaed Saud Al-Qurashi'}
+              </p>
+            </div>
+
+            <div className="p-4 bg-white rounded-xl border border-[#DDD9D0] inline-block shadow-inner">
+              {qrDataUrl && (
+                <img
+                  src={qrDataUrl}
+                  alt="Enlarged WhatsApp QR Code"
+                  className="w-52 h-52 object-contain mx-auto"
+                />
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <a
+                href={whatsAppDirectUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20BA5A] transition-colors shadow-sm"
+              >
+                <MessageSquare className="w-4 h-4 fill-white" />
+                <span>{isAr ? 'فتح المحادثة مباشرة في واتساب' : 'Open Directly in WhatsApp'}</span>
+              </a>
+
+              <div className="text-xs font-mono text-[#8B6E27] dark:text-[#D8AF3B]" dir="ltr">
+                {OFFICIAL_DATA.phone}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
     </section>
   );
 };
