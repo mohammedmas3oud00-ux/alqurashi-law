@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Send, MessageSquare, Copy, Check, Sparkles, Building, User, MapPin, Laptop, AlertCircle } from 'lucide-react';
+import { Send, Copy, Check, Sparkles, Building, User, MapPin, Laptop, AlertCircle } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { Language, FunnelState } from '../types';
 import { DICTIONARY, OFFICIAL_DATA } from '../translations';
 import { formatWhatsAppMessage, openWhatsAppChat } from '../utils/whatsapp';
@@ -229,7 +230,7 @@ export const WhatsAppFunnel: React.FC<WhatsAppFunnelProps> = ({
                 type="submit"
                 className="w-full inline-flex items-center justify-center gap-2.5 py-4 px-6 rounded-xl text-sm sm:text-base font-bold text-white bg-[#25D366] hover:bg-[#20BA5A] shadow hover:shadow-md transition-all active:scale-[0.99]"
               >
-                <MessageSquare className="w-5 h-5 fill-white text-[#25D366]" />
+                <WhatsAppIcon className="w-5 h-5 text-white" />
                 <span>{t.funnel.submitButton}</span>
                 <Send className={`w-4 h-4 ${isAr ? 'rotate-180' : ''}`} />
               </button>
@@ -245,7 +246,7 @@ export const WhatsAppFunnel: React.FC<WhatsAppFunnelProps> = ({
             <div className="flex items-center justify-between pb-3 border-b border-[#ECE9E2] dark:border-[#252528]">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg bg-[#25D366]/10 flex items-center justify-center text-[#25D366]">
-                  <MessageSquare className="w-4 h-4" />
+                  <WhatsAppIcon className="w-4 h-4" />
                 </div>
                 <span className="text-xs sm:text-sm font-bold text-[#141414] dark:text-[#F3F2EE]">
                   {t.funnel.previewTitle}

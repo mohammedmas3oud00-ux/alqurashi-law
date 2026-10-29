@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import QRCode from 'qrcode';
-import { MapPin, Phone, Copy, Check, Download, Navigation, QrCode, ExternalLink, MessageSquare, Maximize2, X } from 'lucide-react';
+import { MapPin, Phone, Copy, Check, Download, Navigation, QrCode, ExternalLink, Maximize2, X } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { Language } from '../types';
 import { DICTIONARY, OFFICIAL_DATA } from '../translations';
 import { downloadLawyerVCard } from '../utils/vcard';
@@ -171,7 +172,7 @@ export const LocationContact: React.FC<LocationContactProps> = ({ lang }) => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#25D366]/10 text-[#1F9D4D] dark:text-[#4ADE80] hover:bg-[#25D366]/20 transition-colors"
                   >
-                    <MessageSquare className="w-3.5 h-3.5" />
+                    <WhatsAppIcon className="w-3.5 h-3.5" />
                     <span>WhatsApp</span>
                   </a>
                 </div>
@@ -307,7 +308,7 @@ export const LocationContact: React.FC<LocationContactProps> = ({ lang }) => {
                 rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold text-white bg-[#25D366] hover:bg-[#20BA5A] transition-colors shadow-sm"
               >
-                <MessageSquare className="w-4 h-4 fill-white" />
+                <WhatsAppIcon className="w-4 h-4 text-white" />
                 <span>{isAr ? 'فتح المحادثة مباشرة في واتساب' : 'Open Directly in WhatsApp'}</span>
               </a>
 

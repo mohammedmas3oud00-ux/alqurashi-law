@@ -1,5 +1,6 @@
 import React from 'react';
-import { Award, ShieldCheck, ArrowLeft, ArrowRight, MessageSquare, Clock, CheckCircle2, Zap } from 'lucide-react';
+import { Award, ShieldCheck, ArrowLeft, ArrowRight, Clock, CheckCircle2, Zap } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { Language } from '../types';
 import { DICTIONARY, OFFICIAL_DATA } from '../translations';
 import { openWhatsAppChat } from '../utils/whatsapp';
@@ -69,7 +70,7 @@ export const Hero: React.FC<HeroProps> = ({ lang, onNavigateToFunnel }) => {
                 onClick={handleDirectWhatsApp}
                 className="inline-flex items-center justify-center gap-2 px-5 py-3.5 text-sm sm:text-base font-medium rounded-xl text-[#18181B] dark:text-[#E8E7E2] bg-[#EFECE6] dark:bg-[#1E1E22] hover:bg-[#E5E2DC] dark:hover:bg-[#28282C] border border-[#DDD9D1] dark:border-[#313136] transition-colors duration-150"
               >
-                <MessageSquare className="w-4 h-4 text-[#25D366]" />
+                <WhatsAppIcon className="w-4 h-4 text-[#25D366]" />
                 <span>{t.hero.secondaryCta}</span>
               </button>
             </div>

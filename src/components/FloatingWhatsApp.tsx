@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MessageSquare } from 'lucide-react';
+import { WhatsAppIcon } from './WhatsAppIcon';
 import { Language } from '../types';
 import { OFFICIAL_DATA } from '../translations';
 import { openWhatsAppChat } from '../utils/whatsapp';
@@ -36,7 +36,7 @@ export const FloatingWhatsApp: React.FC<FloatingWhatsAppProps> = ({ lang }) => {
         aria-label="Direct WhatsApp Contact"
         className="w-13 h-13 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-4 focus:ring-[#25D366]/30"
       >
-        <MessageSquare className="w-6 h-6 fill-white text-[#25D366]" />
+        <WhatsAppIcon className="w-7 h-7 text-white" />
       </button>
     </div>
   );
