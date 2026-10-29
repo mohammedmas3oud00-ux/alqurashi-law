@@ -70,7 +70,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F7F4] dark:bg-[#0F0F10] text-[#141414] dark:text-[#ECEBE8] flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen bg-[#F4F7F8] dark:bg-[#0B1C22] text-[#102A32] dark:text-[#E8EEF0] flex flex-col font-sans transition-colors duration-200 overflow-x-hidden w-full">
       {/* Top Bar Navigation */}
       <Header
         lang={lang}

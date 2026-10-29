@@ -2,9 +2,9 @@ import { ServiceItem, ReviewItem } from './types';
 
 export const OFFICIAL_DATA = {
   nameAr: 'المحامي والموثق أ. مساعد سعود القرشي',
-  nameEn: 'Adv. & Notary Mosaed Saud Al-Qurashi',
-  firmAr: 'مؤسس شركة مُتم للمحاماة والاستشارات القانونية',
-  firmEn: 'Founder of Mutimm Law & Legal Consultations',
+  nameEn: 'Adv. & Notary Musaid Saud Al-Qurashi',
+  firmAr: 'مساعد سعود القرشي للمحاماة والاستشارات القانونية',
+  firmEn: 'Musaid Saud Al-Qurashi For Law & Legal Consultations',
   degreeAr: 'ماجستير في القانون (LL.M.) من الولايات المتحدة الأمريكية',
   degreeEn: 'Master of Laws (LL.M.) - United States of America',
   licensesAr: 'مرخص رسمياً من وزارة العدل برخصتي (محامٍ ممارس) و(موثق معتمد)',

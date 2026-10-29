@@ -5,6 +5,17 @@
   :root {
     --font-sans: 'IBM Plex Sans Arabic', 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-serif: 'Amiri', 'Playfair Display', Georgia, serif;
+    
+    /* Brand Theme: Deep Petrol & Champagne Gold */
+    --color-petrol-950: #0B1C22;
+    --color-petrol-900: #102931;
+    --color-petrol-800: #163842;
+    --color-petrol-700: #1D4956;
+    --color-petrol-600: #255C6C;
+    --color-gold-500: #C5B088;
+    --color-gold-400: #D4C3A3;
+    --color-gold-300: #E4D7C0;
+    --color-gold-600: #A89369;
   }
 
   html {
@@ -13,23 +24,45 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* Prevent iOS zoom on input focus */
+  @media screen and (max-width: 768px) {
+    input, select, textarea {
+      font-size: 16px !important;
+    }
   }
 
   /* Custom subtle scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 7px;
+    height: 7px;
   }
   ::-webkit-scrollbar-track {
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(100, 100, 100, 0.2);
+    background: rgba(22, 56, 66, 0.3);
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(100, 100, 100, 0.4);
+    background: rgba(197, 176, 136, 0.6);
   }
+}
+
+/* Hide scrollbar for clean horizontal filter navigation on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .font-serif-legal {
